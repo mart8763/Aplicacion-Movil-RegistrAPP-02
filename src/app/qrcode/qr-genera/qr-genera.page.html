@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Generar QR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding center-content">
+  <ion-button expand="block" fill="outline" (click)="generateQR()">Generar QR</ion-button>
+
+  <div class="qr-container" *ngIf="qrData">
+    <h3 class="qr-message">Escanea este QR:</h3>
+    <qrcode [qrdata]="qrData" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+  </div>
+
+  <!-- Lista de asistencias -->
+  <div *ngIf="attendances.length > 0" class="attendance-table">
+    <h3>Usuarios que escanearon el QR:</h3>
+    <ion-list>
+      <ion-item *ngFor="let attendance of attendances">
+        <ion-label>{{ attendance.id }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="start" style="margin: bottom 30px; ;">
+    <ion-fab-button [routerLink]="['/perfil-profesor']">
+      <ion-icon name="chevron-back"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
